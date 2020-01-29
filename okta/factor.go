@@ -68,14 +68,14 @@ func (m *FactorResource) DeleteFactor(userId string, factorId string) (*Response
 	}
 	return resp, nil
 }
-func (m *FactorResource) ListFactors(userId string) ([]UserFactor, *Response, error) {
+func (m *FactorResource) ListFactors(userId string) ([]Factor, *Response, error) {
 	url := fmt.Sprintf("/api/v1/users/%v/factors", userId)
 	req, err := m.client.requestExecutor.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	var factor []UserFactor
+	var factor []Factor
 	resp, err := m.client.requestExecutor.Do(req, &factor)
 	if err != nil {
 		return nil, resp, err
